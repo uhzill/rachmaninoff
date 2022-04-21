@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachmaninoff</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        window.onload = function(){
+            var mouseCursor = document.querySelector(".cursor");
+            var logo = document.querySelectorAll("#logo");
+            var menuOne = document.querySelectorAll("#menu1");
+            var menuTwo = document.querySelectorAll("#menu2");
+            var menuThr = document.querySelectorAll("#menu3");
+
+            logo.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("logo");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("logo");
+                });
+            });
+
+            menuOne.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu1");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu1");
+                });
+            });
+
+            menuTwo.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu2");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu2");
+                });
+            });
+
+            menuThr.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu3");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu3");
+                });
+            });
+
+            // 마우스 움직이기
+            function myCursor(e){
+                mouseCursor.style.left = e.pageX + "px";
+                mouseCursor.style.top = e.pageY + "px";
+
+            }
+            window.addEventListener("mousemove", myCursor);
+            
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&family=Square+Peg&family=Ubuntu&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .clear{
+            clear: both;
+        }
+        /* 웹접근성 고려한 콘텐츠 숨기기 */
+        .blind{
+            position: absolute; 
+            width: 1px; 
+            height: 1px; 
+            clip: rect(0 0 0 0); /* 클리핑 범위 지정 */
+            overflow: hidden;
+        }
+        #page{
+            margin: 0 auto;
+            width: 60%;
+        }
+        body{
+            font-family: 'Noto Sans KR', sans-serif;
+            background-image: url(./img/bg.jpeg);
+            background-size: contain;
+            color: #8A6954;
+            cursor: none;
+            -ms-overflow-style: none;
+        }
+        ::-webkit-scrollbar 
+        { 
+            display: none; 
+        }
+        header{
+            margin-top: 20px;
+            height: 150px;
+        }
+        #logo{
+            width: 20%;
+            font-size: 35px;
+            float: left;
+            margin-top: 40px;
+            font-family: 'Square Peg', cursive;
+        }
+        #main_nav{
+            float: right;
+            margin-top: 40px;
+            background-color: #8a695434;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        #main_nav li{
+            list-style: none;
+            display: inline-block;
+            margin: 11px 60px;
+        }
+        a{
+            color: #8A6954;
+            text-decoration: none;
+        }
+        #logo a{
+            color: #8A6954;
+        }
+        #content_img{
+            width: 50%;
+            height: 650px;
+            float: left;
+            text-align: center;
+            padding-top: 102px;
+        }
+        #content_img img{
+            position: relative;
+            z-index: -5;
+        }
+        #content_text{
+            width: 50%;
+            height: 650px;
+            padding: 240px 0 0 40px;
+            float: right;
+            font-size: 17px;
+            font-family: 'Ubuntu', sans-serif;
+            line-height: 200%;
+        }
+        #korean{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        hr{
+            width: 80%;
+            border: none;
+            margin: 10px 0 10px 0;
+            border-top: 2px solid #8A6954;
+        }
+        footer{
+            height: 50px;
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+        footer li{
+            list-style: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        #source{
+            float: left;
+        }
+        #copyright{
+            float: right;
+        }
+        .cursor{
+            width: 25px;
+            height: 25px;
+            border-radius: 20%;;
+            background-color: #8a69544e;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transform-origin: 100% 100%;
+            transition-property: background, transform;
+            backdrop-filter: blur(2px);
+            transition: transform 0.1s ease-in-out, opacity 0.2s ease-in-out;
+        }
+        .logo{
+            background-color: #ffd35b88;
+            transform: scale(8) translate(35%, 35%);
+            border-radius: 50%;
+        }
+        .menu1{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        .menu2{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        .menu3{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+
+        /* 미디어쿼리 */
+        @media screen and (max-width: 1100px){
+            #page{
+                width: 100%;
+            }
+            header{
+                margin-top: 0;
+                height: 220px;
+            }
+            #logo{
+                width: 100%;
+                text-align: center;
+            }
+            #main_nav{
+                width: 100%;
+            }
+            #main_nav li{
+                margin: 10px 30px;
+            }
+            #content_img{
+                width: 100%;
+            }
+            #content_text{
+                width: 100%;
+                padding: 0;
+                height: 300px;
+                text-align: center;
+            }
+            #source{
+                width: 100%;
+                margin: 5px 0 5px 0;
+            }
+            #copyright{
+                width: 100%;
+                margin: 10px 0 20px 0;
+            }
+            footer{
+                height: 100px;
+            }
+            hr{
+                width: 0; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id ="page">
+    <header>
+        <nav>
+            <div id="logo"><a href="index.html">Rachmaninoff</a></div>
+            <ul id="main_nav">
+                <li id="menu1"><a href="story.html">Story</a></li>
+                <li id="menu2"><a href="work1.html">Work</a></li>
+                <li id="menu3"><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="content_img">
+        <h2 class="blind"></h2>
+        <img src="./img/main_img.png" alt="라흐마니노프">
+    </section>
+
+    <section id="content_text">
+        <h2>Rachmaninoff</h2>
+        <hr>
+        <p>Sergei Vasilievich Rachmaninoff, Russian pianist and composer. <br>
+            Introducing Rachmaninoff's life and music.<br>
+        </p>
+        <p id="korean">
+            러시아의 피아니스트이자 작곡가인 세르게이 바실리예비치 라흐마니노프.<br>
+            라흐마니노프의 삶과 음악에 대해 소개합니다
+        </p>
+    </section>
+
+    <div class="clear"></div>
+    <footer>
+        <ul>
+            <li id="source"> SOURCE</li>
+            <li id="source"> https://musopen.org/</li>
+            <li id="source"> http://www.kkacl.com/</li>
+            <li id="source"> https://commons.wikimedia.org/wiki/</li>
+            <li id="copyright">ⓒ2022 LimJooHyun</li>
+        </ul>
+    </footer>
+    </div>
+</body>
+</html>

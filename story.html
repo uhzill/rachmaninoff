@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachmaninoff</title>
+    <script src="./jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        window.onload = function(){
+            var mouseCursor = document.querySelector(".cursor");
+            var logo = document.querySelectorAll("#logo");
+            var menuOne = document.querySelectorAll("#menu1");
+            var menuTwo = document.querySelectorAll("#menu2");
+            var menuThr = document.querySelectorAll("#menu3");
+
+            logo.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("logo");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("logo");
+                });
+            });
+
+            menuOne.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu1");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu1");
+                });
+            });
+
+            menuTwo.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu2");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu2");
+                });
+            });
+
+            menuThr.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu3");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu3");
+                });
+            });
+
+            // 마우스 움직이기
+            function myCursor(e){
+                mouseCursor.style.left = e.pageX + "px";
+                mouseCursor.style.top = e.pageY + "px";
+            }
+            window.addEventListener("mousemove", myCursor);
+
+            // scrollTop
+            $("#scrollTop").click(function () {
+            console.log("click");
+            $("html, body").animate({ scrollTop: 0 }, 1000);
+            // html, body 움직임. 0(맨 위)으로, 1초동안
+            });
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&family=Square+Peg&family=Ubuntu&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .clear{
+            clear: both;
+        }
+        /* 웹접근성 고려한 콘텐츠 숨기기 */
+        .blind{
+            position: absolute; 
+            width: 1px; 
+            height: 1px; 
+            clip: rect(0 0 0 0); /* 클리핑 범위 지정 */
+            overflow: hidden;
+        }
+        #page{
+            margin: 0 auto;
+            width: 60%;
+        }
+        body{
+            font-family: 'Noto Sans KR', sans-serif;
+            background-image: url(./img/bg.jpeg);
+            background-size: contain;
+            color: #8A6954;
+            cursor: none;
+            -ms-overflow-style: none;
+        }
+        ::-webkit-scrollbar 
+        { 
+            display: none; 
+        }
+        header{
+            margin-top: 20px;
+            height: 150px;
+        }
+        #logo{
+            width: 20%;
+            font-size: 35px;
+            float: left;
+            margin-top: 40px;
+            font-family: 'Square Peg', cursive;
+        }
+        #main_nav{
+            float: right;
+            margin-top: 40px;
+            background-color: #8a695434;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        #main_nav li{
+            list-style: none;
+            display: inline-block;
+            margin: 11px 60px;
+        }
+        a{
+            color: #8A6954;
+            text-decoration: none;
+        }
+        #logo a{
+            color: #8A6954;
+        }
+        h2{
+            width: 100%;
+            height: 100px;
+            margin-bottom: 40px;
+            line-height: 400%;
+            background-color: #8a69544e;
+            border-radius: 5px;
+            text-align: center;
+        }
+        section{
+            line-height: 160%;
+            align-items: center;
+            background-color: #ffffff84;
+            border-radius: 5px;
+        }
+        #table_wrap{
+            width: 70%;
+            margin: 0 auto;
+        }
+        table{
+            width: 100%;
+            margin-bottom: 70px;
+        }
+        table, tr, td{
+            border-collapse: collapse;
+            vertical-align: top;
+            padding: 40px 10px 40px 10px;
+        }
+        .title{
+            width: 100px;
+            font-weight: bold;
+        }
+        footer{
+            height: 50px;
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+        footer li{
+            list-style: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        #source{
+            float: left;
+        }
+        #copyright{
+            float: right;
+        }
+        .cursor{
+            width: 25px;
+            height: 25px;
+            border-radius: 20%;;
+            background-color: #8a69544e;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transform-origin: 100% 100%;
+            transition-property: background, transform;
+            backdrop-filter: blur(2px);
+            transition: transform 0.1s ease-in-out, opacity 0.2s ease-in-out;
+        }
+        .logo{
+            background-color: #ffd35b88;
+            transform: scale(8) translate(35%, 35%);
+            border-radius: 50%;
+        }
+        .menu1{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        .menu2{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        .menu3{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        #scrollTop {
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            line-height: 120%;
+            font-weight: bold;
+            background-color: #8a69544e;
+            border-radius: 50%;
+            position: fixed;
+            line-height: 100%;
+            right: 5%;
+            bottom: 5%;
+        }
+        #scrollTop:hover {
+            background-color: #ffd35b88;
+            cursor: pointer;
+        }
+
+        /* 미디어쿼리 */
+        @media screen and (max-width: 1100px){
+            #page{
+                width: 100%;
+            }
+            header{
+                margin-top: 0;
+                height: 220px;
+            }
+            #logo{
+                width: 100%;
+                text-align: center;
+            }
+            #main_nav{
+                width: 100%;
+            }
+            #main_nav li{
+                margin: 10px 30px;
+            }
+            #source{
+                width: 100%;
+                margin: 5px 0 5px 0;
+            }
+            #copyright{
+                width: 100%;
+                margin: 10px 0 20px 0;
+            }
+            footer{
+                height: 100px;
+            }
+            #table_wrap{
+                width: 100%;
+                padding-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id ="page">
+    <header>
+        <nav>
+            <div id="logo"><a href="index.html">Rachmaninoff</a></div>
+            <ul id="main_nav">
+                <li id="menu1"><a href="story.html">Story</a></li>
+                <li id="menu2"><a href="work1.html">Work</a></li>
+                <li id="menu3"><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>STORY</h2>
+        <div id="table_wrap">
+            <table>
+                <tr>
+                    <td class="title">1873</td>
+                    <td>
+                        4월 1일 러시아에서 3남 3녀 중 넷째로 태어났다. <br>
+                        라흐마니노프의 아버지는 오랜 전통을 가진 지역 귀족이었으며 <br>
+                        어머니는 부유한 러시아군 장교의 딸이었기 때문에 경제적으로 상당히 유복했다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1882</td>
+                    <td>페테르스부르크 음악원에 입학한다.</td>
+                </tr>
+                <tr>
+                    <td class="title">1888</td>
+                    <td>
+                        1888년부터 7년간 모스크바 음악원에서 <br>
+                        피아노와 작곡을 즈베레프와 아렌스키, <br>
+                        타네예프로부터 사사받고, 구미 각지에서 피아니스트•지휘자로 활약한다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1892</td>
+                    <td>
+                        오페라 《알레코》를 작곡하여 금메달을 수상하며 음악원을 졸업하였으며, <br>
+                        같은 해에 작곡한 피아노곡 《환상 소곡집》으로 국내외에 이름을 알렸다. 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1893</td>
+                    <td>마린스키여자전문학교의 피아노 교사로 재직했다.</td>
+                </tr>
+                <tr>
+                    <td class="title">1895</td>
+                    <td>교향곡 제 1번을 작곡했다.</td>
+                </tr>
+                <tr>
+                    <td class="title">1897</td>
+                    <td>
+                        교향곡 1번을 상트페테르부르크에서 초연하였으나 실패로 끝났다.<br>
+                        이 곡의 실패 원인으로는 다양한 이유가 제기됐는데, <br>
+                        지휘를 맡은 글라주노프가 술에 취해 있어 <br>
+                        완벽한 연주를 선보이지 못했다는 것이 가장 잘 알려진 이유이다. <br>
+                        자신의 신곡에 엄청난 기대감을 품고 있었지만 쏟아지는 혹평에 깊은 실의에 빠졌고 <br>
+                        극심한 우울증과 신경쇠약에 시달렸고 3년이라는 긴 시간 동안 <br>
+                        아무 곡도 작곡하지 못한 채, 엄청난 슬럼프에 빠지게 되었다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1901</td>
+                    <td>
+                        우울증을 극복을 위해 심리치료를 했고,이 때 쓴 치료방법은 자기암시법이었다.<br>
+                        지속적인 치료로 슬럼프를 이겨내고《피아노 협주곡 2번》을 작곡하였고,<br>
+                        이 곡은 당시 라흐마니노프의 치료를 담당하였던 니콜라이 달(Nikolai Dahl) 박사에게 헌정되었다.<br>
+                        모스크바 필하모닉 오케스트라와 작곡가 자신의 피아노 연주로 11월 09일 초연되었고 <br>
+                        이 연주로 글린카상을 수여받았다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1904</td>
+                    <td>
+                        볼쇼이극장 지휘자로 2년간 재직하면서 <br>
+                        자작 오페라 《프란체스카 다 리미니》을 초연하기도 했다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1905</td>
+                    <td>
+                        모스크바 황실 극장 지휘자에 이름을 올렸고, <br>
+                        미국 및 유럽 연주 여행을 통해 세계 곳곳에서 피아노 연주를 선보였다. <br>
+                        종종 자신의 작품을 직접 연주하기도 했다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1906</td>
+                    <td>
+                        작곡에 전념하기 위해 드레스덴으로 옮겨가 <br>
+                        《교향곡 제 2번》을 작곡하여 두번째 글린카상을 수상받았다. 
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1909</td>
+                    <td>
+                        미국을 방문하여 2년 동안 피아니스트로서 활약한다.<br>
+                        피아노 협주곡 3번을 발표했다. <br>
+                        '피아니스트의 무덤'이라 불리는 이 곡은 헌정받은 당대의 피아니스트 요제프 호프만조차<br>
+                        '나를 위한 곡이 아닌 것 같다'며 거절했을 정도로 난이도가 상당히 높다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1917</td>
+                    <td>
+                        러시아 혁명이 일어나 러시아 제국이 무너지자, <br>
+                        공산화를 피해 가족을 이끌고 미국으로 가서 살게 되었다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1928</td>
+                    <td>
+                        블라디미르 호로비츠를 만나 이후 평생 음악적 동료이자 친구로 지냈다. <br>
+                        여담으로 라흐마니노프는 호로비츠의 연주를 매우 높게 샀는데, <br>
+                        특히 피아노 협주곡 3번 연주에 대하여 <br>
+                        "내 피아노 협주곡은 바로 이렇게 연주되어야 한다고 항상 꿈꿔왔지만, <br>
+                        살아서 이런 연주를 들을 줄은 기대치도 않았다"며 극찬했다. <br>
+                        호로비츠가 연주한 라흐마니노프의 작품도 다수 남아있다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">1943</td>
+                    <td>월 28일 미국 베벌리힐스에서 흑색종으로 사망했다.</td>
+                </tr>
+                <tr>
+                    <td class="title">여담1</td>
+                    <td>
+                        라흐마니노프의 손은 보통 사람들보다 훨씬 컸다.<br>
+                        일설에 따르면 엄지로 '도'를 짚은 상태에서 <br>
+                        새끼손가락으로 다음 옥타브의 '라'를 짚을 만큼 길었다고 한다. <br>
+                        그 덕에 전설적인 기교로 13도의 음정까지도 정확하게 연주해낼 수 있었다. <br>
+                        이런 큰 손은 마르팡 증후군 때문이라는 설이 유력하다. <br>
+                        실제로 라흐마니노프의 신장은 무려 198cm이다.
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">여담2</td>
+                    <td>
+                        라흐마니노프의 취미 중 하나는 드라이브였다. <br>
+                        그는 1914년에 구입한 자동차에 온갖 애정을 쏟았다. <br>
+                        심지어 라흐마니노프는 자동차에 약간의 상처가 나는 것도 견딜 수 없어해 <br>
+                        비가 내리는 날에는 자동차를 타고 교외로 나가지 않았으며 <br>
+                        어떤 누구에게도 자신의 차를 맡기지 않았다. <br>
+                        이 밖에도 라흐마니노프는 옷에 대한 집착이 상당히 강했는데, <br>
+                        특히 좋은 슈트에 대한 사랑은 패션계의 어떤 인사보다도 유명했다. <br>
+                        그는 늘 영국산의 최고급 슈트를 착용했고, <br>
+                        콘서트 후 관객과의 만남에서 한 관객이 슈트에 대해 칭찬을 하자 <br>
+                        이에 대해 매우 흡족해 했다는 일화도 있다.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+    <aside id="scrollTop">
+        <br>
+        <img src="./img/arrow.png" width="20">
+        <br>
+        TOP
+    </aside>
+
+    <div class="clear"></div>
+    <footer>
+        <ul>
+            <li id="source"> SOURCE</li>
+            <li id="source"> https://musopen.org/</li>
+            <li id="source"> http://www.kkacl.com/</li>
+            <li id="source"> https://commons.wikimedia.org/wiki/</li>
+            <li id="copyright">ⓒ2022 LimJooHyun</li>
+        </ul>
+    </footer>
+    </div>
+</body>
+</html>

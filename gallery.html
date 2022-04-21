@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachmaninoff</title>
+    <script src="./jquery-3.6.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        window.onload = function(){
+            var mouseCursor = document.querySelector(".cursor");
+            var logo = document.querySelectorAll("#logo");
+            var menuOne = document.querySelectorAll("#menu1");
+            var menuTwo = document.querySelectorAll("#menu2");
+            var menuThr = document.querySelectorAll("#menu3");
+
+            logo.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("logo");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("logo");
+                });
+            });
+
+            menuOne.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu1");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu1");
+                });
+            });
+
+            menuTwo.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu2");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu2");
+                });
+            });
+
+            menuThr.forEach(function(menu){
+                menu.addEventListener("mouseover", function(){
+                    mouseCursor.classList.add("menu3");
+                });
+                menu.addEventListener("mouseleave", function(){
+                    mouseCursor.classList.remove("menu3");
+                });
+            });
+
+            // 마우스 움직이기
+            function myCursor(e){
+                mouseCursor.style.left = e.pageX + "px";
+                mouseCursor.style.top = e.pageY + "px";
+
+            }
+            window.addEventListener("mousemove", myCursor);
+            
+            // scrollTop
+            $("#scrollTop").click(function () {
+            console.log("click");
+            $("html, body").animate({ scrollTop: 0 }, 1000);
+            // html, body 움직임. 0(맨 위)으로, 1초동안
+            });
+
+            var target = document.querySelectorAll('.btn_open');
+            var btnPopClose = document.querySelectorAll('.pop_wrap .btn_close');
+            var targetID;
+
+            // 팝업 열기
+            for(var i = 0; i < target.length; i++){
+            target[i].addEventListener('click', function(){
+                targetID = this.getAttribute('href');
+                document.querySelector(targetID).style.display = 'block';
+            });
+            }
+
+            // 팝업 닫기
+            for(var j = 0; j < target.length; j++){
+            btnPopClose[j].addEventListener('click', function(){
+                this.parentNode.parentNode.style.display = 'none';
+            });
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400&family=Square+Peg&family=Ubuntu&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .clear{
+            clear: both;
+        }
+        /* 웹접근성 고려한 콘텐츠 숨기기 */
+        .blind{
+            position: absolute; 
+            width: 1px; 
+            height: 1px; 
+            clip: rect(0 0 0 0); /* 클리핑 범위 지정 */
+            overflow: hidden;
+        }
+        #page{
+            margin: 0 auto;
+            width: 60%;
+        }
+        body{
+            font-family: 'Noto Sans KR', sans-serif;
+            background-image: url(./img/bg.jpeg);
+            background-size: contain;
+            color: #8A6954;
+            -ms-overflow-style: none;
+        }
+        ::-webkit-scrollbar 
+        { 
+            display: none; 
+        }
+        header{
+            margin-top: 20px;
+            height: 150px;
+        }
+        #logo{
+            width: 20%;
+            font-size: 35px;
+            float: left;
+            margin-top: 40px;
+            font-family: 'Square Peg', cursive;
+        }
+        table{
+            width: 100%;
+            margin-bottom: 70px;
+        }
+        table, tr, td{
+            border-collapse: collapse;
+            vertical-align: top;
+            border: 1px solid #8A6954;
+            text-align: center;
+            vertical-align: middle;
+        }
+        #main_nav{
+            float: right;
+            margin-top: 40px;
+            background-color: #8a695434;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        #main_nav li{
+            list-style: none;
+            display: inline-block;
+            margin: 11px 60px;
+        }
+        h2{
+            width: 100%;
+            height: 100px;
+            margin-bottom: 100px;
+            line-height: 400%;
+            background-color: #8a69544e;
+            border-radius: 5px;
+            text-align: center;
+        }
+        a{
+            color: #8A6954;
+            text-decoration: none;
+        }
+        #logo a{
+            color: #8A6954;
+        }
+        #img_wrap{
+            text-align: center;
+            margin-bottom: 100px;
+        }
+        .img{
+            width: 300px; 
+            height: 300px; 
+            overflow: hidden;
+            display: inline-block;
+        }
+        footer{
+            height: 50px;
+            margin-top: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+        }
+        footer li{
+            list-style: none;
+            display: inline-block;
+            margin: 10px;
+        }
+        #source{
+            float: left;
+        }
+        #copyright{
+            float: right;
+        }
+        .cursor{
+            width: 25px;
+            height: 25px;
+            border-radius: 20%;;
+            background-color: #8a69544e;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transform: translate(-50%, -50%);
+            transform-origin: 100% 100%;
+            transition-property: background, transform;
+            backdrop-filter: blur(2px);
+            transition: transform 0.1s ease-in-out, opacity 0.2s ease-in-out;
+        }
+        .logo{
+            background-color: #ffd35b88;
+            transform: scale(8) translate(35%, 35%);
+            border-radius: 50%;
+        }
+        .menu1{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        .menu2{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        .menu3{
+            background-color: #ffd35b88;
+            transform: scale(2);
+        }
+        #scrollTop {
+            width: 65px;
+            height: 65px;
+            text-align: center;
+            line-height: 120%;
+            font-weight: bold;
+            background-color: #8a69544e;
+            border-radius: 50%;
+            position: fixed;
+            line-height: 100%;
+            right: 5%;
+            bottom: 5%;
+        }
+        #scrollTop:hover {
+            background-color: #ffd35b88;
+            cursor: pointer;
+        }
+        .scale {
+            transform: scale(1);
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -ms-transform: scale(1);
+            -o-transform: scale(1);
+            transition: all 0.3s ease-in-out; 
+        }
+        .scale:hover {
+            transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+            -moz-transform: scale(1.2);
+            -ms-transform: scale(1.2);
+            -o-transform: scale(1.2);
+        }
+        .btn_open{
+            font-weight:bold; 
+            margin:5px; 
+            padding:4px 6px; 
+            background:#000; 
+            color:#fff;
+        }
+        .pop_wrap{
+            position:fixed; 
+            top:20%; 
+            left:0; 
+            right:0; 
+            bottom:0; 
+            font-size:0; 
+            text-align:center;
+            vertical-align: middle;
+        }
+        .pop_wrap:after{
+            display:inline-block; 
+        }
+        .pop_wrap .pop_inner{
+            display:inline-block; 
+            color:#fff;
+            padding:20px 30px; 
+            background:#000000c8;
+            width:600px;
+            font-size:16px;
+        }
+        button{
+            padding: 5px 8px 5px 8px;
+        }
+
+        /* 미디어쿼리 */
+        @media screen and (max-width: 1100px){
+            #page{
+                width: 100%;
+            }
+            header{
+                margin-top: 0;
+                height: 220px;
+            }
+            #logo{
+                width: 100%;
+                text-align: center;
+            }
+            #main_nav{
+                width: 100%;
+            }
+            #main_nav li{
+                margin: 10px 30px;
+            }
+            #source{
+                width: 100%;
+                margin: 5px 0 5px 0;
+            }
+            #copyright{
+                width: 100%;
+                margin: 10px 0 20px 0;
+            }
+            footer{
+                height: 100px;
+            }
+            hr{
+                width: 0; 
+            }
+            .pop_wrap .pop_inner{
+                width:100%;
+            }
+            .pop_wrap{
+                top:10%; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div id ="page">
+    <header>
+        <nav>
+            <div id="logo"><a href="index.html">Rachmaninoff</a></div>
+            <ul id="main_nav">
+                <li id="menu1"><a href="story.html">Story</a></li>
+                <li id="menu2"><a href="work1.html">Work</a></li>
+                <li id="menu3"><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+   <section>
+       <h2>GALLERY</h2>
+       <div id="img_wrap">
+       <div class="img">
+       <div class="scale"><a href="#pop1" class="btn_open"><img src="img/ra1.jpg"></a></div>
+       </div>
+       <div class="img">
+        <div class="scale"><a href="#pop2" class="btn_open"><img src="img/ra2.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop3" class="btn_open"><img src="img/ra3.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop4" class="btn_open"><img src="img/ra4.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop5" class="btn_open"><img src="img/ra5.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop6" class="btn_open"><img src="img/ra6.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop7" class="btn_open"><img src="img/ra7.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop8" class="btn_open"><img src="img/ra8.jpg"></a></div>
+        </div>
+        <div class="img">
+            <div class="scale"><a href="#pop9" class="btn_open"><img src="img/ra9.jpg"></a></div>
+        </div>
+        </div>
+
+        <!-- 팝업창 -->
+        <div id="pop1" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra1.jpg"><br><br>
+                <p>1885년의 라흐마니노프</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop2" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra2.jpg"><br><br>
+                <p>20대의 라흐마니노프</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop3" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra3.jpg"><br><br>
+                <p>피아노 악보를 보는 라흐마니노프</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop4" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra4.jpg"><br><br>
+                <p>1899년의 라흐마니노프</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop5" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra5.jpg"><br><br>
+                <p>1910년의 라흐마니노프</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop6" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra6.jpg"><br><br>
+                <p>1919년, 캘리포니아의 거대한 삼나무 앞에 있는 라흐마니노프</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop7" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra7.jpg"><br><br>
+                <p>라흐마닌노프와 피아노</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop8" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra8.jpg"><br><br>
+                <p>1936년의 라흐마니노프와 피아노</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+        <div id="pop9" class="pop_wrap" style="display:none;">
+            <div class="pop_inner">
+                <img src="img/ra9.jpg"><br><br>
+                <p>라흐마니노프의 묘</p><br>
+                <button type="button" class="btn_close">X</button>
+            </div>
+        </div>
+   </section>
+
+   <aside id="scrollTop">
+    <br>
+    <img src="./img/arrow.png" width="20">
+    <br>
+    TOP
+    </aside>
+
+    <div class="clear"></div>
+    <footer>
+        <ul>
+            <li id="source"> SOURCE</li>
+            <li id="source"> https://musopen.org/</li>
+            <li id="source"> http://www.kkacl.com/</li>
+            <li id="source"> https://commons.wikimedia.org/wiki/</li>
+            <li id="copyright">ⓒ2022 LimJooHyun</li>
+        </ul>
+    </footer>
+    </div>
+</body>
+</html>
